@@ -58,13 +58,11 @@ const errorHandler = (error: AxiosError) => {
 interface RequestProp {
   url: string
   options?: AxiosRequestConfig
-  withToken?: boolean
 }
 
 const newRequest = async ({
   url = '',
   options = {},
-  withToken = true,
 }: RequestProp) => {
   const instance = axios.create({
     withCredentials: true,

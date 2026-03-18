@@ -413,7 +413,7 @@ ws.binaryType = "arraybuffer"
 ;(ws as any).AuserName = "我是自定义属性"
 const DouDiZhuPage = () => {
   const navigate = useNavigate()
-  const params: {userId: string; roomId: string} = useParams()
+  const params = useParams<{userId: string; roomId: string}>()
   const [cardData, setCardData] = useState<I_Card[]>([])
 
   const userId = params.userId ?? "1"

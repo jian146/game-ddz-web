@@ -1,7 +1,7 @@
 import type {T_cardColor, T_decorStr} from "@/utils/card"
 import styles from "./decor.module.less"
 interface I_Decor {
-  style?: React.HTMLAttributes<HTMLSpanElement>
+  style?: React.CSSProperties
   className?: string
   cardColor: T_cardColor
   point: number

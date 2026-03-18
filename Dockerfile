@@ -5,11 +5,10 @@ WORKDIR /app
 
 RUN npm install -g pnpm
 
-# Build context is the repo root, so prefix paths with web-app/
-COPY web-app/package.json web-app/pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
-COPY web-app/ .
+COPY . .
 RUN pnpm run build:pre
 
 # Stage 2: Serve with nginx

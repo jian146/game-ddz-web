@@ -28,7 +28,7 @@ server {
     index index.html;
 
     location /api/ {
-        proxy_pass https://game-ddz-server-production.up.railway.app/;
+        proxy_pass https://game-ddz-server-production.up.railway.app;
         proxy_http_version 1.1;
         proxy_set_header Host game-ddz-server-production.up.railway.app;
         proxy_set_header X-Real-IP $remote_addr;

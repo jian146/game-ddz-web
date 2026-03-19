@@ -14,6 +14,8 @@ RUN pnpm run build:pre
 # Stage 2: Serve with nginx
 FROM nginx:alpine
 
+RUN apk add --no-cache ca-certificates
+
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Write nginx config inline (avoids build-context path issues)
@@ -26,7 +28,9 @@ server {
     index index.html;
 
     location /api/ {
-        proxy_pass https://game-ddz-server-production.up.railway.app;
+        resolver 8.8.8.8 valid=30s ipv6=off;
+        set $backend "https://game-ddz-server-production.up.railway.app";
+        proxy_pass $backend;
         proxy_http_version 1.1;
         proxy_set_header Host game-ddz-server-production.up.railway.app;
         proxy_set_header X-Real-IP $remote_addr;
@@ -34,6 +38,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_read_timeout 60s;
         proxy_connect_timeout 10s;
+        proxy_ssl_verify off;
     }
 
     location / {

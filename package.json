@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "build:pre": "tsc -b && vite build --mode pre",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:pre": "vite preview --mode pre"
   },
   "dependencies": {
     "ant-design": "^1.0.0",

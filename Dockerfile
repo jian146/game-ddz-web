@@ -28,10 +28,7 @@ server {
     index index.html;
 
     location /api/ {
-        rewrite ^/api/(.*)$ /$1 break;
-        resolver 8.8.8.8 valid=30s ipv6=off;
-        set $backend "https://game-ddz-server-production.up.railway.app";
-        proxy_pass $backend;
+        proxy_pass https://game-ddz-server-production.up.railway.app/;
         proxy_http_version 1.1;
         proxy_set_header Host game-ddz-server-production.up.railway.app;
         proxy_set_header X-Real-IP $remote_addr;
